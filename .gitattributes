@@ -1,0 +1,4 @@
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+sources/original_trisection_qa.md -text

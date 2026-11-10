@@ -1,0 +1,555 @@
+{
+  "valid": true,
+  "sage_version": "10.7",
+  "symbolic_identity_count": 9,
+  "symbolic_identities": [
+    "line and given cubic encode the triple-angle equation",
+    "triple rotation has the required real part on the unit circle",
+    "triple rotation has the required imaginary part on the unit circle",
+    "double-angle point lies on the unit circle",
+    "small chord encodes the cosine of the copied angle",
+    "second copied chord has the same length",
+    "angle transfer preserves length",
+    "angle transfer preserves cosine",
+    "angle transfer preserves orientation"
+  ],
+  "primitive_check_count": 9,
+  "cli_check_count": 3,
+  "fixture_count": 40,
+  "invalid_input_count": 9,
+  "rejected_inputs": [
+    "zero_first_ray",
+    "zero_second_ray",
+    "both_zero",
+    "coincident_rays",
+    "opposite_rays",
+    "right_ccw",
+    "right_cw",
+    "obtuse_ccw",
+    "obtuse_cw"
+  ],
+  "cubic_queries_per_construction": 1,
+  "cases": [
+    {
+      "name": "60_degrees/standard_ccw",
+      "valid": true,
+      "input_cosine": "1/2",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/8",
+        "lower": "17334269283591052503/18446744073709551616",
+        "upper": "2166783660448881563/2305843009213693952"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "60_degrees/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "1/2",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/8",
+        "lower": "17334269283591052503/18446744073709551616",
+        "upper": "2166783660448881563/2305843009213693952"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "60_degrees/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "1/2",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/8",
+        "lower": "17334269283591052503/18446744073709551616",
+        "upper": "2166783660448881563/2305843009213693952"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "60_degrees/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "1/2",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/8",
+        "lower": "17334269283591052503/18446744073709551616",
+        "upper": "2166783660448881563/2305843009213693952"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "45_degrees/standard_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 1/2",
+        "lower": "3260954456333195553/4611686018427387904",
+        "upper": "13043817825332782213/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^4 - x^2 + 1/16",
+        "lower": "8909093255870436117/9223372036854775808",
+        "upper": "17818186511740872235/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "45_degrees/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 1/2",
+        "lower": "3260954456333195553/4611686018427387904",
+        "upper": "13043817825332782213/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^4 - x^2 + 1/16",
+        "lower": "8909093255870436117/9223372036854775808",
+        "upper": "17818186511740872235/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "45_degrees/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 1/2",
+        "lower": "3260954456333195553/4611686018427387904",
+        "upper": "13043817825332782213/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^4 - x^2 + 1/16",
+        "lower": "8909093255870436117/9223372036854775808",
+        "upper": "17818186511740872235/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "45_degrees/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 1/2",
+        "lower": "3260954456333195553/4611686018427387904",
+        "upper": "13043817825332782213/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^4 - x^2 + 1/16",
+        "lower": "8909093255870436117/9223372036854775808",
+        "upper": "17818186511740872235/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "30_degrees/standard_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 3/4",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^6 - 3/2*x^4 + 9/16*x^2 - 3/64",
+        "lower": "1135406036351323053/1152921504606846976",
+        "upper": "18166496581621168849/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "30_degrees/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 3/4",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^6 - 3/2*x^4 + 9/16*x^2 - 3/64",
+        "lower": "1135406036351323053/1152921504606846976",
+        "upper": "18166496581621168849/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "30_degrees/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 3/4",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^6 - 3/2*x^4 + 9/16*x^2 - 3/64",
+        "lower": "1135406036351323053/1152921504606846976",
+        "upper": "18166496581621168849/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "30_degrees/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 3/4",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^6 - 3/2*x^4 + 9/16*x^2 - 3/64",
+        "lower": "1135406036351323053/1152921504606846976",
+        "upper": "18166496581621168849/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_3_5/standard_ccw",
+      "valid": true,
+      "input_cosine": "3/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 3/20",
+        "lower": "17572520070463013111/18446744073709551616",
+        "upper": "2196565008807876639/2305843009213693952"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_3_5/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "3/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 3/20",
+        "lower": "17572520070463013111/18446744073709551616",
+        "upper": "2196565008807876639/2305843009213693952"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_3_5/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "3/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 3/20",
+        "lower": "17572520070463013111/18446744073709551616",
+        "upper": "2196565008807876639/2305843009213693952"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_3_5/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "3/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 3/20",
+        "lower": "17572520070463013111/18446744073709551616",
+        "upper": "2196565008807876639/2305843009213693952"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_4_5/standard_ccw",
+      "valid": true,
+      "input_cosine": "4/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/5",
+        "lower": "4505999397152748501/4611686018427387904",
+        "upper": "18023997588610994005/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_4_5/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "4/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/5",
+        "lower": "4505999397152748501/4611686018427387904",
+        "upper": "18023997588610994005/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_4_5/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "4/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/5",
+        "lower": "4505999397152748501/4611686018427387904",
+        "upper": "18023997588610994005/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_4_5/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "4/5",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/5",
+        "lower": "4505999397152748501/4611686018427387904",
+        "upper": "18023997588610994005/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_5_13/standard_ccw",
+      "valid": true,
+      "input_cosine": "5/13",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 5/52",
+        "lower": "8523743948000851205/9223372036854775808",
+        "upper": "17047487896001702411/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_5_13/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "5/13",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 5/52",
+        "lower": "8523743948000851205/9223372036854775808",
+        "upper": "17047487896001702411/18446744073709551616"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_5_13/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "5/13",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 5/52",
+        "lower": "8523743948000851205/9223372036854775808",
+        "upper": "17047487896001702411/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_cosine_5_13/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "5/13",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 5/52",
+        "lower": "8523743948000851205/9223372036854775808",
+        "upper": "17047487896001702411/18446744073709551616"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_output_7_8/standard_ccw",
+      "valid": true,
+      "input_cosine": "7/128",
+      "target_cosine": "7/8",
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_output_7_8/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "7/128",
+      "target_cosine": "7/8",
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_output_7_8/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "7/128",
+      "target_cosine": "7/8",
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "rational_output_7_8/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "7/128",
+      "target_cosine": "7/8",
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "quadratic_output_sqrt15_4/standard_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 135/256",
+        "lower": "1674467170060018501/2305843009213693952",
+        "upper": "13395737360480148009/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^2 - 15/16",
+        "lower": "17860983147306864011/18446744073709551616",
+        "upper": "4465245786826716003/4611686018427387904"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "quadratic_output_sqrt15_4/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 135/256",
+        "lower": "1674467170060018501/2305843009213693952",
+        "upper": "13395737360480148009/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^2 - 15/16",
+        "lower": "17860983147306864011/18446744073709551616",
+        "upper": "4465245786826716003/4611686018427387904"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "quadratic_output_sqrt15_4/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 135/256",
+        "lower": "1674467170060018501/2305843009213693952",
+        "upper": "13395737360480148009/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^2 - 15/16",
+        "lower": "17860983147306864011/18446744073709551616",
+        "upper": "4465245786826716003/4611686018427387904"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "quadratic_output_sqrt15_4/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": {
+        "minimal_polynomial": "x^2 - 135/256",
+        "lower": "1674467170060018501/2305843009213693952",
+        "upper": "13395737360480148009/18446744073709551616"
+      },
+      "target_cosine": {
+        "minimal_polynomial": "x^2 - 15/16",
+        "lower": "17860983147306864011/18446744073709551616",
+        "upper": "4465245786826716003/4611686018427387904"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_right_angle/standard_ccw",
+      "valid": true,
+      "input_cosine": "1/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/4000000000000000000000000000000",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_right_angle/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "1/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/4000000000000000000000000000000",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_right_angle/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "1/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/4000000000000000000000000000000",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_right_angle/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "1/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 1/4000000000000000000000000000000",
+        "lower": "15975348984942515101/18446744073709551616",
+        "upper": "7987674492471257551/9223372036854775808"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_zero_angle/standard_ccw",
+      "valid": true,
+      "input_cosine": "999999999999999999999999999999/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 999999999999999999999999999999/4000000000000000000000000000000",
+        "lower": "18446744073709551615/18446744073709551616",
+        "upper": "1"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_zero_angle/translated_rotated_ccw",
+      "valid": true,
+      "input_cosine": "999999999999999999999999999999/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 999999999999999999999999999999/4000000000000000000000000000000",
+        "lower": "18446744073709551615/18446744073709551616",
+        "upper": "1"
+      },
+      "orientation": 1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_zero_angle/translated_rotated_cw",
+      "valid": true,
+      "input_cosine": "999999999999999999999999999999/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 999999999999999999999999999999/4000000000000000000000000000000",
+        "lower": "18446744073709551615/18446744073709551616",
+        "upper": "1"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    },
+    {
+      "name": "near_zero_angle/tiny_ray_markers_cw",
+      "valid": true,
+      "input_cosine": "999999999999999999999999999999/1000000000000000000000000000000",
+      "target_cosine": {
+        "minimal_polynomial": "x^3 - 3/4*x - 999999999999999999999999999999/4000000000000000000000000000000",
+        "lower": "18446744073709551615/18446744073709551616",
+        "upper": "1"
+      },
+      "orientation": -1,
+      "cubic_intersection_count": 3
+    }
+  ],
+  "example_sha256": "7e70ee70642879e3bc87f1cf546271ad75654a4107a6674062db8569214c7809",
+  "source_sha256": {
+    "experiments/fixtures.py": "9b2033d37dfa83f5e49ebc4c023ef5acbf31294b3a3eea199676960213112ef6",
+    "experiments/geometry.py": "0281b0ffb35ad935edd3959ed0d0ab3b99cf1499c63554fbb2af4942b9d0aa99",
+    "experiments/plot_construction.py": "8b9b4e178443037aea5852f18235cfa9b8a833c40cee4ac5dc60c53ccbfe947c",
+    "experiments/records.py": "32063491525010639c9bcfce3ecc442a0a9bd65d185f49d35c601e4a71026c8c",
+    "experiments/trisection.py": "bf3b5e074fcd6a93219c9368d3f73326edf9e433750e42560297a01a184de07a",
+    "experiments/verify.py": "f9b73b095a342edcb14ab05a765f32beb5e8245876e07ad5290653f12f70f366"
+  }
+}
