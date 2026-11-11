@@ -148,6 +148,9 @@ def verify_fixture(fixture):
     family = fixture["name"].split("/")[0]
     if family in expected_x:
         require(x == expected_x[family], "independent prescribed target root")
+    # Exercise the public CLI's exact endpoint encoding for every input family.
+    for ray in result.rays:
+        point_record(ray.through)
     return result, {"name": fixture["name"], "valid": True,
                     "input_cosine": exact_record(cosine), "target_cosine": exact_record(x),
                     "orientation": result.orientation, "cubic_intersection_count": len(roots)}
@@ -167,6 +170,10 @@ def primitive_checks():
     require(curve.intersect(Line(AA(1), AA(0), AA(-2))) == [point((2, 8))], "vertical cubic query")
     require(curve.intersect(Line(AA(0), AA(1), AA(0))) == [point((0, 0))],
             "multiple cubic root is returned once")
+    for a, b in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1)):
+        intersections = line_circle_intersections(Line(AA(a), AA(b), AA(0)), unit)
+        require(len(intersections) == 2 and intersections[0] < intersections[1],
+                "line-circle candidates retain lexicographic order for either line orientation")
     for action in (
         lambda: Line.through(point((0, 0)), point((0, 0))),
         lambda: line_intersection(Line(1, 0, 0), Line(1, 0, -1)),
@@ -177,7 +184,7 @@ def primitive_checks():
         except ValueError:
             continue
         raise ArithmeticError("degenerate primitive was accepted")
-    return 9
+    return 15
 
 
 def cli_checks():

@@ -2,19 +2,21 @@
 
 from sage.all import AA, QQ
 
+import sage_compat  # Exact certificate encoding also uses the pinned backend.
+
 
 def exact_record(value):
     value = AA(value)
     if value in QQ:
         return str(QQ(value))
     polynomial = value.minpoly()
-    roots = polynomial.roots(AA, multiplicities=False)
     bits = 64
     while True:
         denominator = 2 ** bits
         lower = QQ((value * denominator).floor()) / denominator
         upper = lower + QQ(1) / denominator
-        if sum(lower < root < upper for root in roots) == 1:
+        # An irrational minimal polynomial has no rational endpoint roots.
+        if polynomial.number_of_roots_in_interval(lower, upper) == 1:
             return {"minimal_polynomial": str(polynomial),
                     "lower": str(lower), "upper": str(upper)}
         bits *= 2

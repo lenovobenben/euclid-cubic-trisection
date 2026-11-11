@@ -5,6 +5,7 @@ from sage.all import AA, QQ
 
 def fixtures():
     epsilon = QQ(1) / 10 ** 30
+    extreme_epsilon = QQ(1) / 10 ** 100
     cosines = [
         ("60_degrees", AA(1) / 2),
         ("45_degrees", AA(2).sqrt() / 2),
@@ -16,6 +17,8 @@ def fixtures():
         ("quadratic_output_sqrt15_4", 3 * AA(15).sqrt() / 16),
         ("near_right_angle", AA(epsilon)),
         ("near_zero_angle", AA(1 - epsilon)),
+        ("extreme_near_right_angle", AA(extreme_epsilon)),
+        ("extreme_near_zero_angle", AA(1 - extreme_epsilon)),
     ]
     frames = [
         ("standard_ccw", (0, 0), (1, 0), 1, 1, 1),

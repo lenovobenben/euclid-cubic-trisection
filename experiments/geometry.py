@@ -4,6 +4,8 @@ from dataclasses import dataclass
 
 from sage.all import AA, PolynomialRing
 
+import sage_compat  # Apply the pinned SageMath backend workaround before using AA.
+
 
 def point(coordinates):
     values = tuple(AA(value) for value in coordinates)
@@ -81,8 +83,13 @@ def line_circle_intersections(line, circle):
         return [foot]
     factor = (height_squared / norm_squared).sqrt()
     displacement = (-line.b * factor, line.a * factor)
-    return sorted([(foot[0] + displacement[0], foot[1] + displacement[1]),
-                   (foot[0] - displacement[0], foot[1] - displacement[1])])
+    intersections = [(foot[0] + displacement[0], foot[1] + displacement[1]),
+                     (foot[0] - displacement[0], foot[1] - displacement[1])]
+    # The positive factor makes the line coefficients determine lexicographic order.
+    # Comparing the computed coordinates can force unnecessary number-field unions.
+    if line.b > 0 or (line.b == 0 and line.a < 0):
+        return intersections
+    return intersections[::-1]
 
 
 def circle_intersections(first, second):

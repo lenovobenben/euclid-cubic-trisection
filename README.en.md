@@ -43,14 +43,14 @@ SageMath 10.7 uses rational and real-algebraic arithmetic throughout. The verifi
 | Check | Result |
 |---|---|
 | Symbolic polynomial identities | 9 passed |
-| Intersection and degeneracy regressions | 9 passed |
+| Intersection and degeneracy regressions | 15 passed, including candidate ordering in six line orientations |
 | Command-line regressions | 3 passed, including negative fractional coordinates |
-| Animation regressions | 8 groups passed, covering dependencies, incidence, close labels, magnified views, unfilled curves and distinct view scales |
-| Full geometric replays | 40 passed, covering 10 angle families in 4 frames |
+| Animation regressions | 9 groups passed, covering dependencies, incidence, close labels, magnified views, unfilled curves, distinct view scales and separate timelines for each movie output |
+| Full geometric replays | 48 passed, covering 12 angle families in 4 frames |
 | Invalid inputs | 9 rejected according to the acute-domain contract |
 | Given-cubic queries | 1 per construction, returning 3 distinct real points |
 
-Fixtures include $30^\circ$, $45^\circ$, $60^\circ$, rational cosines, prescribed rational and quadratic target roots, and limiting inputs with cosine $10^{-30}$ or $1-10^{-30}$. The proof covers arbitrary real inputs. The exact implementation accepts algebraic coordinates, and the command-line interface accepts rational coordinates.[Coverage](docs/CASES.md) · [Verification](docs/VERIFICATION.md)
+Fixtures include $30^\circ$, $45^\circ$, $60^\circ$, rational cosines, prescribed rational and quadratic target roots, and limiting inputs with cosine $10^{-30}$, $1-10^{-30}$, $10^{-100}$ or $1-10^{-100}$. The proof covers arbitrary real inputs. The exact implementation accepts algebraic coordinates, and the command-line interface accepts rational coordinates.[Coverage](docs/CASES.md) · [Verification](docs/VERIFICATION.md)
 
 ## Run
 

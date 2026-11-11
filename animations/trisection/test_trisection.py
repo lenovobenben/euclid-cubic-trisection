@@ -1,7 +1,10 @@
 """Check the actual movie sequence, its dependencies and close-point geometry."""
 
+import json
+from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 from manim import Text, tempconfig
@@ -143,6 +146,29 @@ class AnimationTests(unittest.TestCase):
         self.assertGreaterEqual(left_circle.get_bottom()[1], -3.0)
         self.assertLessEqual(left_circle.get_top()[1], 2.25)
         self.assertGreater(scene.left_scale_label.get_bottom()[1], -3.25)
+
+    def test_timeline_follows_each_movie_output(self):
+        scene = self.scene
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            outputs = [(3840, 2160, 60, "CubicTrisection.mp4"),
+                       (1280, 720, 30, "CubicTrisection.mp4"),
+                       (1280, 720, 30, "custom-preview.mp4")]
+            manifests = []
+            for width, height, fps, filename in outputs:
+                movie = directory / f"{height}p{fps}" / filename
+                with tempconfig({"pixel_width": width, "pixel_height": height, "frame_rate": fps}):
+                    with patch.object(scene.renderer.file_writer, "movie_file_path", str(movie), create=True):
+                        scene.write_timeline()
+                manifests.append(movie.with_suffix(".timeline.json"))
+            self.assertEqual(len(set(manifests)), 3)
+            for manifest, (width, height, fps, filename) in zip(manifests, outputs):
+                data = json.loads(manifest.read_text("utf-8"))
+                self.assertEqual(data["resolution"], [width, height])
+                self.assertEqual(data["frame_rate"], fps)
+                self.assertEqual(data["movie_file"], filename)
+                self.assertEqual(data["geometry_sha256"], scene.geometry_hash)
+            self.assertFalse((directory / "timeline.json").exists())
 
 
 if __name__ == "__main__":

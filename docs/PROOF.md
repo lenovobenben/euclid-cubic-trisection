@@ -90,6 +90,8 @@ $$\sigma(a\times r)>0,\qquad \sigma(r\times b)>0.$$
 
 等弦对应的另一交点从 $VR_1$ 正向再旋转 $\varphi$，其相对于 $VA$ 的角位置为 $2\varphi$。它与角位置为 $0$ 的 $M$ 不同，故排除 $M$ 即唯一取得 $R_2$。
 
+程序采用等价的侧别条件。令 $r_1=R_1-V$，候选方向为 $r$，选择 $\sigma(r_1\times r)>0$ 的交点。对 $M$，该值为 $-\sin\varphi$，对 $R_2$，该值为 $\sin\varphi$，所以选点唯一。两个候选值均非零，精确区间细化即可判定符号。
+
 有
 
 $$0<\varphi<2\varphi<3\varphi=\theta.$$

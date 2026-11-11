@@ -7,6 +7,8 @@ are the Euclidean primitives and classical macros in geometry.py.
 
 from dataclasses import dataclass
 
+from sage.all import RealIntervalField
+
 from geometry import Construction, CubicCurve, Line, cross, dot, point, subtract
 
 
@@ -81,17 +83,28 @@ def construct_trisectors(vertex, first_ray_point, second_ray_point):
     candidates = g.meet_line_circle("q", "project_K", "unit_O")
     g.select("Q", candidates, lambda p: p[1] > 0)
 
+    def positive_side(value):
+        # These candidate side products are nonzero by PROOF sections 6 and 7.
+        bits = 64
+        while True:
+            interval = value.interval_fast(RealIntervalField(bits))
+            if not interval.contains_zero():
+                return interval.lower() > 0
+            bits *= 2
+
     def interior(at):
         direction = subtract(at, vertex)
-        return (orientation * cross(first, direction) > 0
-                and orientation * cross(direction, second) > 0)
+        return (positive_side(orientation * cross(first, direction))
+                and positive_side(orientation * cross(direction, second)))
 
     g.circle("first_small_chord", "M", "X", "Q")
     candidates = g.meet_circles("r_candidate_", "unit_V", "first_small_chord")
     g.select("R1", candidates, interior)
     g.circle("second_small_chord", "R1", "M", "R1")
     candidates = g.meet_circles("s_candidate_", "unit_V", "second_small_chord")
-    g.select("R2", candidates, lambda p: p != g.points["M"])
+    first_trisector = subtract(g.points["R1"], vertex)
+    g.select("R2", candidates,
+             lambda p: positive_side(orientation * cross(first_trisector, subtract(p, vertex))))
     g.line("trisector_1", "V", "R1")
     g.line("trisector_2", "V", "R2")
     rays = (Ray(vertex, g.points["R1"]), Ray(vertex, g.points["R2"]))

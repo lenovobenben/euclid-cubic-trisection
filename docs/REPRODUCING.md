@@ -10,6 +10,8 @@ sagemath/sagemath@sha256:4f5589eb6c565949a006f8665de2876b8414410daf5ac554f4434a1
 
 以下命令在项目根目录执行。安装了 SageMath 的环境可直接运行对应的 `sage -python` 命令。
 
+`experiments/sage_compat.py` 在 SageMath 10.7 中为实代数数后端安装数域精度补偿。PARI 数域初始化精度按定义多项式的次数与系数位数增加，并同步两个数域缓存。这项兼容处理作用于当前 Python 进程中的 Sage 代数数后端，几何运算与证书仍采用精确算术。
+
 ## 2. 完整只读核验
 
 Windows PowerShell 命令如下。
@@ -35,9 +37,9 @@ docker run --rm --network none \
   "valid": true,
   "sage_version": "10.7",
   "symbolic_identity_count": 9,
-  "primitive_check_count": 9,
+  "primitive_check_count": 15,
   "cli_check_count": 3,
-  "fixture_count": 40,
+  "fixture_count": 48,
   "invalid_input_count": 9,
   "cubic_queries_per_construction": 1
 }
@@ -123,4 +125,4 @@ docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -v "${PWD}:/manim" -
 docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -v "${PWD}:/manim" -w /manim euclid-min-manim:0.21.0 manim --config_file animations/trisection/manim.cfg animations/trisection/trisection.py CubicTrisection
 ```
 
-该命令按配置生成 3840 × 2160、60 fps 母片。Dockerfile、720p30 预览、播放版封装、分镜和时间线记录见 [动画说明](../animations/trisection/README.md)。
+该命令按配置生成 3840 × 2160、60 fps 母片。每次视频渲染在输出视频旁生成同名 `.timeline.json`，分辨率、帧率和自定义文件名共同决定其路径。Dockerfile、720p30 预览、播放版封装、分镜和时间线记录见 [动画说明](../animations/trisection/README.md)。

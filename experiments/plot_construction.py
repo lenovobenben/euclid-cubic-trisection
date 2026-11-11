@@ -12,7 +12,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Arc
 import numpy as np
-from sage.all import AA, QQ, PolynomialRing
+from sage.all import AA, QQ, PolynomialRing, RealIntervalField
+
+import sage_compat
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,10 +33,15 @@ def decode(record):
     ring = PolynomialRing(QQ, "x")
     polynomial = ring(record["minimal_polynomial"])
     lower, upper = QQ(record["lower"]), QQ(record["upper"])
-    roots = [root for root in polynomial.roots(AA, multiplicities=False) if lower < root < upper]
-    if len(roots) != 1:
+    if (lower >= upper or polynomial(lower) == 0 or polynomial(upper) == 0
+            or polynomial.number_of_roots_in_interval(lower, upper) != 1):
         raise ArithmeticError("the certificate does not isolate a unique root")
-    return roots[0]
+    bits = 64
+    while True:
+        interval = RealIntervalField(bits)(lower, upper)
+        if polynomial.number_of_roots_in_interval(QQ(interval.lower()), QQ(interval.upper())) == 1:
+            return AA.polynomial_root(polynomial, interval)
+        bits *= 2
 
 
 def load_points():

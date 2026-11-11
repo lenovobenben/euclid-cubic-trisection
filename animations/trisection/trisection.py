@@ -188,23 +188,28 @@ class CubicTrisection(Scene):
         self.intersect_and_select()
         self.lift_to_circle()
         self.restore_rays()
-        if not config.dry_run:
-            manifest = {
-                "scene": type(self).__name__,
-                "geometry_sha256": self.geometry_hash,
-                "animation_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                "resolution": [config.pixel_width, config.pixel_height],
-                "frame_rate": config.frame_rate,
-                "duration_seconds": round(float(self.time), 6),
-                "display_scales": {"original": self.original_view.scale,
-                                   "coordinate": self.coordinate_view.scale,
-                                   "original_relative_to_coordinate": self.original_magnification},
-                "sections": self.sections,
-                "construction_events": self.audit,
-            }
-            destination = HERE / "media/timeline.json"
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            destination.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
+        if not config.dry_run and config.write_to_movie:
+            self.write_timeline()
+
+    def write_timeline(self):
+        movie = Path(self.renderer.file_writer.movie_file_path)
+        manifest = {
+            "scene": type(self).__name__,
+            "movie_file": movie.name,
+            "geometry_sha256": self.geometry_hash,
+            "animation_source_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+            "resolution": [config.pixel_width, config.pixel_height],
+            "frame_rate": config.frame_rate,
+            "duration_seconds": round(float(self.time), 6),
+            "display_scales": {"original": self.original_view.scale,
+                               "coordinate": self.coordinate_view.scale,
+                               "original_relative_to_coordinate": self.original_magnification},
+            "sections": self.sections,
+            "construction_events": self.audit,
+        }
+        destination = movie.with_suffix(".timeline.json")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
     def principle_page(self):
         self.sections.append({"title": "原理", "start_seconds": 0})
