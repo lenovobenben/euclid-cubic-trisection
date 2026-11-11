@@ -127,6 +127,23 @@ class AnimationTests(unittest.TestCase):
                 half_projection = abs(normal[0]) * label.width / 2 + abs(normal[1]) * label.height / 2
                 self.assertGreater(distance - half_projection, 0.025)
 
+    def test_distinct_view_scales(self):
+        scene = self.scene
+        left_circle = scene.objects["unit_V"]
+        right_circle = scene.objects["unit_O"]
+        self.assertAlmostEqual(left_circle.width / right_circle.width, 1.3)
+        self.assertAlmostEqual(scene.original_view.scale / scene.coordinate_view.scale, 1.3)
+        self.assertEqual(scene.left_scale_label.text.replace(" ", ""), "左视图×1.3")
+        self.assertEqual(scene.right_scale_label.text.replace(" ", ""), "右视图×1")
+        for name in ("M", "N", "R1", "R2"):
+            self.assertAlmostEqual(np.linalg.norm(scene.dots[name].get_center() - left_circle.get_center()),
+                                   left_circle.width / 2)
+        self.assertGreaterEqual(left_circle.get_left()[0], -6.35)
+        self.assertLessEqual(left_circle.get_right()[0], -1.6)
+        self.assertGreaterEqual(left_circle.get_bottom()[1], -3.0)
+        self.assertLessEqual(left_circle.get_top()[1], 2.25)
+        self.assertGreater(scene.left_scale_label.get_bottom()[1], -3.25)
+
 
 if __name__ == "__main__":
     unittest.main()

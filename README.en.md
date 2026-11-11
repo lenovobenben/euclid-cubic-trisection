@@ -14,6 +14,8 @@ This is the sixth project in the Euclid geometry research series. It provides a 
 
 The movie follows the documented construction from copying the input angle through the cubic intersection to both output rays. It includes enlarged views of the intercept bisections and the nearby unit-circle points. Classical straightedge-and-compass macros are used for midpoints, parallels, perpendiculars and segment transfer. Storyboard, geometric regression tests and rendering instructions appear in the [animation guide](animations/trisection/README.md).
 
+The original-angle view on the left is magnified by a factor of 1.3 relative to the coordinate view on the right. Both views display their scale factors.
+
 ## Problem and operations
 
 The inputs are a fixed orthonormal coordinate frame, a common unit length, the complete curve $y=x^3$, and two rays forming an angle $0<\theta<\pi/2$. The output consists of the two interior trisecting rays at the original vertex, in order from the first input ray to the second.
@@ -43,7 +45,7 @@ SageMath 10.7 uses rational and real-algebraic arithmetic throughout. The verifi
 | Symbolic polynomial identities | 9 passed |
 | Intersection and degeneracy regressions | 9 passed |
 | Command-line regressions | 3 passed, including negative fractional coordinates |
-| Animation regressions | 7 groups passed, covering dependencies, incidence, close labels, magnified views and unfilled curves |
+| Animation regressions | 8 groups passed, covering dependencies, incidence, close labels, magnified views, unfilled curves and distinct view scales |
 | Full geometric replays | 40 passed, covering 10 angle families in 4 frames |
 | Invalid inputs | 9 rejected according to the acute-domain contract |
 | Given-cubic queries | 1 per construction, returning 3 distinct real points |

@@ -177,7 +177,9 @@ class CubicTrisection(Scene):
         self.available = {"O", "X", "Y", "V", "A", "B", "x_axis", "y_axis", "given_cubic"}
         self.definitions = {name: step for step in self.data["steps"] for name in step["outputs"]}
         self.coordinate_view = View((0, 0), (2.8, -0.65), 1.65)
-        self.original_view = View(tuple(self.data["points"]["V"]), (-4.0, -0.7), 1.65)
+        self.original_magnification = 1.3
+        self.original_view = View(tuple(self.data["points"]["V"]), (-4.0, -0.7),
+                                  self.coordinate_view.scale * self.original_magnification)
         self.bounds = (-1.25, 1.65, -1.35, 1.65)
         self.principle_page()
         self.input_and_copy()
@@ -194,6 +196,9 @@ class CubicTrisection(Scene):
                 "resolution": [config.pixel_width, config.pixel_height],
                 "frame_rate": config.frame_rate,
                 "duration_seconds": round(float(self.time), 6),
+                "display_scales": {"original": self.original_view.scale,
+                                   "coordinate": self.coordinate_view.scale,
+                                   "original_relative_to_coordinate": self.original_magnification},
                 "sections": self.sections,
                 "construction_events": self.audit,
             }
@@ -222,6 +227,10 @@ class CubicTrisection(Scene):
         self.add(rule)
         self.left_heading = self.text("给定锐角 ∠AVB", 23).move_to([-4, 2.55, 0])
         self.add(self.left_heading, self.text("给定坐标系与 y = x³", 23).move_to([2.9, 2.55, 0]))
+        self.left_scale_label = self.text(f"左视图 ×{self.original_magnification:g}", 17, MUTED)
+        self.left_scale_label.move_to([-4, -3.04, 0])
+        self.right_scale_label = self.text("右视图 ×1", 17, MUTED).move_to([2.9, -3.04, 0])
+        self.add(self.left_scale_label, self.right_scale_label)
         self.caption("原角可位于任意位置，坐标系、单位长度和立方曲线已给定", hold=1.2)
         for name in ("x_axis", "y_axis"):
             self.objects[name] = self.coordinate_view.line(self.data["lines"][name], self.bounds,
@@ -268,6 +277,7 @@ class CubicTrisection(Scene):
         self.left_objects = [self.objects[name] for name in
                              ("V", "side_A", "side_B", "side_A_label", "side_B_label", "unit_V", "M", "N")]
         self.left_objects.append(self.chord_MN)
+        self.left_objects.append(self.left_scale_label)
 
     def cosine_and_intercept(self):
         self.stage("取得余弦，并两次中分构造截距")
@@ -437,10 +447,11 @@ class CubicTrisection(Scene):
         for first, second in zip(directions, directions[1:]):
             start = np.arctan2(first[1], first[0])
             end = np.arctan2(second[1], second[0])
-            arc = Arc(radius=0.72, start_angle=start, angle=end - start,
+            arc = Arc(radius=0.72 * self.original_magnification, start_angle=start, angle=end - start,
                       color=RESULT, stroke_width=1.5).shift(self.original_view.at(vertex))
             middle = (start + end) / 2
-            at = self.original_view.at(vertex) + np.array([np.cos(middle), np.sin(middle), 0]) * 1.28
+            at = (self.original_view.at(vertex)
+                  + np.array([np.cos(middle), np.sin(middle), 0]) * 1.28 * self.original_magnification)
             numerator = self.text("θ", 18, RESULT).move_to([0, 0.13, 0])
             denominator = self.text("3", 16, RESULT).move_to([0, -0.14, 0])
             bar = Line([-0.105, 0, 0], [0.105, 0, 0], color=RESULT, stroke_width=0.8)

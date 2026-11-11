@@ -1,13 +1,18 @@
 {
   "scene": "CubicTrisection",
   "geometry_sha256": "4619a4fe628834568ef0eb89d99b7468b59ed9c269a592ab45fa7b5ed7ddf6b0",
-  "animation_source_sha256": "109702ec739f74dd9098478e8bf712d6305661d2572efdb1e25e54a43766eb47",
+  "animation_source_sha256": "2c1b9a0de5ba91c91fb5e024e8d3f92a0fd7397e94e8caf83ed74f6cc0308333",
   "resolution": [
     3840,
     2160
   ],
   "frame_rate": 60.0,
   "duration_seconds": 99.0,
+  "display_scales": {
+    "original": 2.145,
+    "coordinate": 1.65,
+    "original_relative_to_coordinate": 1.3
+  },
   "sections": [
     {
       "title": "原理",
