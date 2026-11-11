@@ -6,11 +6,11 @@
 
 ## Apache License 2.0
 
-原创 Python 源代码、核验程序、构建脚本和配置采用 [Apache License 2.0](LICENSE)。其他带有明确软件用途的原创文件采用相同许可。
+原创 Python 与 Manim 源代码、核验程序、回归测试、构建脚本、Dockerfile 和配置采用 [Apache License 2.0](LICENSE)。其他带有明确软件用途的原创文件采用相同许可。
 
 ## Creative Commons Attribution 4.0 International
 
-原创 Markdown 文档、数学说明、证明记录、验证报告、几何导出、静态示意图及研究数据采用 [CC BY 4.0](LICENSE-CONTENT)。生成和核验这些材料的程序采用上节的软件许可。
+原创 Markdown 文档、数学说明、证明记录、验证报告、几何导出、静态示意图、预览图、动画及研究数据采用 [CC BY 4.0](LICENSE-CONTENT)。生成和核验这些材料的程序采用上节的软件许可。
 
 推荐署名为“lenovobenben，Euclid-Cubic-Trisection，所用版本或提交，CC BY 4.0”，并注明修改。
 

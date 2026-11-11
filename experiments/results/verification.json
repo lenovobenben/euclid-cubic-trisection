@@ -545,6 +545,7 @@
   ],
   "example_sha256": "7e70ee70642879e3bc87f1cf546271ad75654a4107a6674062db8569214c7809",
   "source_sha256": {
+    "experiments/export_animation.py": "9e7681e38cad9b12cc24d270987f9a6a2711cff3197a98979c661ed2520f3b65",
     "experiments/fixtures.py": "9b2033d37dfa83f5e49ebc4c023ef5acbf31294b3a3eea199676960213112ef6",
     "experiments/geometry.py": "0281b0ffb35ad935edd3959ed0d0ab3b99cf1499c63554fbb2af4942b9d0aa99",
     "experiments/plot_construction.py": "8b9b4e178443037aea5852f18235cfa9b8a833c40cee4ac5dc60c53ccbfe947c",

@@ -4,13 +4,15 @@
 
 **Given orthonormal coordinates, a unit length and the curve $y=x^3$, construct both trisectors of any acute angle with one line–cubic intersection query.**
 
-This is the sixth project in the Euclid geometry research series. Stage one provides a finite geometric construction, a proof covering every acute input, exact SageMath replay and independent verification. The input angle may have any location and either orientation. Animation production is scheduled as a separate second stage.
+This is the sixth project in the Euclid geometry research series. It provides a finite geometric construction, a proof covering every acute input, exact SageMath replay, independent verification and a Manim construction animation. The input angle may have any location and either orientation.
 
 [Complete construction, Chinese](docs/ANSWER.md) · [Proof, Chinese](docs/PROOF.md) · [Reproduction](docs/REPRODUCING.md) · [Exact report](experiments/results/verification.json)
 
-![Cubic intersection, unit-circle lift and both original-position trisectors](docs/figures/construction.png)
+[![Both original-position trisectors](animations/trisection/preview.png)](https://raw.githubusercontent.com/lenovobenben/euclid-cubic-trisection/main/animations/trisection/media/CubicTrisection_4k60.mp4)
 
-*A static figure from the exactly verified $60^\circ$ example.*
+*[Watch the 99-second 4K60 construction animation](https://raw.githubusercontent.com/lenovobenben/euclid-cubic-trisection/main/animations/trisection/media/CubicTrisection_4k60.mp4), with Chinese captions and a complete verified $60^\circ$ example.*
+
+The movie follows the documented construction from copying the input angle through the cubic intersection to both output rays. It includes enlarged views of the intercept bisections and the nearby unit-circle points. Classical straightedge-and-compass macros are used for midpoints, parallels, perpendiculars and segment transfer. Storyboard, geometric regression tests and rendering instructions appear in the [animation guide](animations/trisection/README.md).
 
 ## Problem and operations
 
@@ -41,6 +43,7 @@ SageMath 10.7 uses rational and real-algebraic arithmetic throughout. The verifi
 | Symbolic polynomial identities | 9 passed |
 | Intersection and degeneracy regressions | 9 passed |
 | Command-line regressions | 3 passed, including negative fractional coordinates |
+| Animation regressions | 7 groups passed, covering dependencies, incidence, close labels, magnified views and unfilled curves |
 | Full geometric replays | 40 passed, covering 10 angle families in 4 frames |
 | Invalid inputs | 9 rejected according to the acute-domain contract |
 | Given-cubic queries | 1 per construction, returning 3 distinct real points |
@@ -88,6 +91,7 @@ Add `--write` to the verification command with a writable mount to regenerate `e
 | Exact geometric operations | [geometry.py](experiments/geometry.py) |
 | Fixtures and verifier | [fixtures.py](experiments/fixtures.py), [verify.py](experiments/verify.py) |
 | Complete exact example trace | [example.json](experiments/results/example.json) |
+| Manim animation, data and rendering | [Animation guide](animations/trisection/README.md) |
 
 ## Sources and scope
 

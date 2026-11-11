@@ -1,0 +1,345 @@
+{
+  "scene": "CubicTrisection",
+  "geometry_sha256": "4619a4fe628834568ef0eb89d99b7468b59ed9c269a592ab45fa7b5ed7ddf6b0",
+  "animation_source_sha256": "109702ec739f74dd9098478e8bf712d6305661d2572efdb1e25e54a43766eb47",
+  "resolution": [
+    3840,
+    2160
+  ],
+  "frame_rate": 60.0,
+  "duration_seconds": 99.0,
+  "sections": [
+    {
+      "title": "原理",
+      "start_seconds": 0
+    },
+    {
+      "title": "把给定角复制到坐标原点",
+      "start_seconds": 7.0
+    },
+    {
+      "title": "取得余弦，并两次中分构造截距",
+      "start_seconds": 24.5
+    },
+    {
+      "title": "构造正斜率方向，过 E 作直线 L",
+      "start_seconds": 39.0
+    },
+    {
+      "title": "与给定立方曲线求交，选第一象限交点",
+      "start_seconds": 51.9
+    },
+    {
+      "title": "投影正根横坐标，回到单位圆取点 Q",
+      "start_seconds": 61.7
+    },
+    {
+      "title": "把相同弦长转回原角，作出两条射线",
+      "start_seconds": 76.8
+    },
+    {
+      "title": "原角的两条三等分射线已作成",
+      "start_seconds": 91.8
+    }
+  ],
+  "construction_events": [
+    {
+      "object": "O",
+      "parents": [],
+      "seconds": 9.3
+    },
+    {
+      "object": "X",
+      "parents": [],
+      "seconds": 9.7
+    },
+    {
+      "object": "Y",
+      "parents": [],
+      "seconds": 10.1
+    },
+    {
+      "object": "V",
+      "parents": [],
+      "seconds": 11.4
+    },
+    {
+      "object": "side_A",
+      "parents": [
+        "V",
+        "A"
+      ],
+      "seconds": 11.8
+    },
+    {
+      "object": "side_B",
+      "parents": [
+        "V",
+        "B"
+      ],
+      "seconds": 12.5
+    },
+    {
+      "object": "unit_O",
+      "parents": [
+        "O",
+        "O",
+        "X"
+      ],
+      "seconds": 14.4
+    },
+    {
+      "object": "unit_V",
+      "parents": [
+        "V",
+        "O",
+        "X"
+      ],
+      "seconds": 15.1
+    },
+    {
+      "object": "M",
+      "parents": [
+        "side_A",
+        "unit_V"
+      ],
+      "seconds": 16.8
+    },
+    {
+      "object": "N",
+      "parents": [
+        "side_B",
+        "unit_V"
+      ],
+      "seconds": 17.2
+    },
+    {
+      "object": "input_chord",
+      "parents": [
+        "X",
+        "M",
+        "N"
+      ],
+      "seconds": 19.5
+    },
+    {
+      "object": "P",
+      "parents": [
+        "unit_O",
+        "input_chord"
+      ],
+      "seconds": 21.4
+    },
+    {
+      "object": "project_P",
+      "parents": [
+        "P",
+        "x_axis"
+      ],
+      "seconds": 26.1
+    },
+    {
+      "object": "C",
+      "parents": [
+        "project_P",
+        "x_axis"
+      ],
+      "seconds": 26.8
+    },
+    {
+      "object": "transfer_cosine",
+      "parents": [
+        "O",
+        "O",
+        "C"
+      ],
+      "seconds": 28.6
+    },
+    {
+      "object": "D",
+      "parents": [
+        "y_axis",
+        "transfer_cosine"
+      ],
+      "seconds": 29.3
+    },
+    {
+      "object": "D_half",
+      "parents": [
+        "O",
+        "D"
+      ],
+      "seconds": 32.5
+    },
+    {
+      "object": "E",
+      "parents": [
+        "O",
+        "D_half"
+      ],
+      "seconds": 35.2
+    },
+    {
+      "object": "Y_half",
+      "parents": [
+        "O",
+        "Y"
+      ],
+      "seconds": 41.0
+    },
+    {
+      "object": "H",
+      "parents": [
+        "Y_half",
+        "Y"
+      ],
+      "seconds": 42.6
+    },
+    {
+      "object": "vertical_X",
+      "parents": [
+        "X",
+        "x_axis"
+      ],
+      "seconds": 44.3
+    },
+    {
+      "object": "horizontal_H",
+      "parents": [
+        "H",
+        "x_axis"
+      ],
+      "seconds": 45.0
+    },
+    {
+      "object": "W",
+      "parents": [
+        "vertical_X",
+        "horizontal_H"
+      ],
+      "seconds": 45.7
+    },
+    {
+      "object": "reference",
+      "parents": [
+        "O",
+        "W"
+      ],
+      "seconds": 47.4
+    },
+    {
+      "object": "L",
+      "parents": [
+        "E",
+        "reference"
+      ],
+      "seconds": 49.3
+    },
+    {
+      "object": "k0",
+      "parents": [
+        "L",
+        "given_cubic"
+      ],
+      "seconds": 55.1
+    },
+    {
+      "object": "k1",
+      "parents": [
+        "L",
+        "given_cubic"
+      ],
+      "seconds": 55.5
+    },
+    {
+      "object": "k2",
+      "parents": [
+        "L",
+        "given_cubic"
+      ],
+      "seconds": 55.9
+    },
+    {
+      "object": "K",
+      "parents": [
+        "L",
+        "given_cubic"
+      ],
+      "seconds": 59.4
+    },
+    {
+      "object": "project_K",
+      "parents": [
+        "K",
+        "x_axis"
+      ],
+      "seconds": 64.2
+    },
+    {
+      "object": "F",
+      "parents": [
+        "project_K",
+        "x_axis"
+      ],
+      "seconds": 64.9
+    },
+    {
+      "object": "Q",
+      "parents": [
+        "project_K",
+        "unit_O"
+      ],
+      "seconds": 66.7
+    },
+    {
+      "object": "first_small_chord",
+      "parents": [
+        "M",
+        "X",
+        "Q"
+      ],
+      "seconds": 78.8
+    },
+    {
+      "object": "R1",
+      "parents": [
+        "unit_V",
+        "first_small_chord"
+      ],
+      "seconds": 80.7
+    },
+    {
+      "object": "trisector_1",
+      "parents": [
+        "V",
+        "R1"
+      ],
+      "seconds": 83.0
+    },
+    {
+      "object": "second_small_chord",
+      "parents": [
+        "R1",
+        "M",
+        "R1"
+      ],
+      "seconds": 85.2
+    },
+    {
+      "object": "R2",
+      "parents": [
+        "unit_V",
+        "second_small_chord"
+      ],
+      "seconds": 88.0
+    },
+    {
+      "object": "trisector_2",
+      "parents": [
+        "V",
+        "R2"
+      ],
+      "seconds": 90.3
+    }
+  ]
+}

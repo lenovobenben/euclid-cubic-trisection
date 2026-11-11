@@ -4,13 +4,19 @@
 
 **给定坐标系、单位长度和曲线 $y=x^3$，用一次直线与曲线求交，构造任意锐角的两条三等分射线。**
 
-本项目是 Euclid 几何研究系列的第六题。当前第一阶段已完成实际构造、全锐角正确性证明、SageMath 精确重放及独立核验。输入角可以位于平面任意位置，允许顺时针或逆时针排列。动画按计划在第二阶段单独制作。
+本项目是 Euclid 几何研究系列的第六题，提供实际构造、全锐角正确性证明、SageMath 精确重放、独立核验及 Manim 作图动画。输入角可以位于平面任意位置，允许顺时针或逆时针排列。
 
-[完整作图答案](docs/ANSWER.md) · [正确性证明](docs/PROOF.md) · [运行与复现](docs/REPRODUCING.md) · [精确核验报告](experiments/results/verification.json)
+[观看 4K60 作图动画](https://raw.githubusercontent.com/lenovobenben/euclid-cubic-trisection/main/animations/trisection/media/CubicTrisection_4k60.mp4) · [完整作图答案](docs/ANSWER.md) · [正确性证明](docs/PROOF.md) · [运行与复现](docs/REPRODUCING.md)
 
-![给定立方曲线求交、正根提升与原角两条三等分射线](docs/figures/construction.png)
+[![原角的两条三等分射线](animations/trisection/preview.png)](https://raw.githubusercontent.com/lenovobenben/euclid-cubic-trisection/main/animations/trisection/media/CubicTrisection_4k60.mp4)
 
-*静态图采用已精确核验的 $60^\circ$ 案例，依次展示曲线求交、单位圆提升及原位置的两条射线。*
+*点击预览图观看或下载作图动画，3840 × 2160、60 fps、99 秒。*
+
+## 先看动画
+
+动画用一个已精确核验的 $60^\circ$ 案例，按文档完整展示原角复制、余弦截距、参考方向、三个曲线交点的选取、单位圆提升及原位两条射线的取得。左侧为原角，右侧为给定坐标系，单位长度显示比例相同。
+
+沿用系列的深蓝背景、中文字幕和细线风格。截距两次中分与单位圆取点分别局部放大，并明确提示本例 $D=Y_{1/2}$ 的重合复用。中点、平行线、垂线及长度转移采用文档中的经典尺规宏。详细分镜、动作回归和渲染命令见 [动画说明](animations/trisection/README.md)。
 
 ## 题目与工具
 
@@ -32,6 +38,8 @@ $$4t^3-3t=c,\qquad \frac{\sqrt3}{2}<t<1.$$
 
 三次方程始终有三个不同实根，另外两个位于 $(-1,-1/2)$ 和 $(-1/2,0)$。因此正根选点对全部锐角统一有效。第二次等弦复制取已有初边点之外的另一个交点，得到按原角方向排序的第二条射线。[完整作法](docs/ANSWER.md) · [存在性与唯一性证明](docs/PROOF.md)
 
+给定曲线求交、单位圆提升和两条原位射线也可在同一张静态图中对照。[构造示意图](docs/figures/construction.png)
+
 ## 代码与精确结果
 
 构造程序按点、线、圆和曲线交点记录实际动作。SageMath 使用精确实代数数进行求交与选点，最终独立检查原角的三个相邻角具有相同余弦、相同正向正弦，并保持正确的角内次序。
@@ -41,6 +49,7 @@ $$4t^3-3t=c,\qquad \frac{\sqrt3}{2}<t<1.$$
 | 符号恒等式 | 9 项通过 |
 | 几何求交及退化回归 | 9 项通过 |
 | 命令行入口回归 | 3 项通过，包含负分数坐标 |
+| 动画动作与显示几何回归 | 7 组通过，检查文档顺序、点线圆关联、局部放大、标签及无填充样式 |
 | 完整作图 | 40 次通过，覆盖 10 个角参数族及 4 种位置方向 |
 | 非法输入 | 9 项按严格锐角约定拒绝 |
 | 立方曲线求交 | 每次构造 1 次，得到 3 个不同实交点 |
@@ -83,6 +92,7 @@ sage -python experiments/trisection.py --first 1 0 --second 1 1
 | 主构造及命令行 | [trisection.py](experiments/trisection.py) |
 | 精确几何、案例和统一核验 | [geometry.py](experiments/geometry.py)、[fixtures.py](experiments/fixtures.py)、[verify.py](experiments/verify.py) |
 | 完整案例动作及精确点线圆 | [example.json](experiments/results/example.json) |
+| Manim 动画、数据与渲染 | [动画目录](animations/trisection/README.md) |
 
 ## 来源与项目定位
 

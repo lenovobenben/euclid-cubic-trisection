@@ -95,7 +95,7 @@ assert first_ray.vertex == (0, 0)
 assert second_ray.vertex == (0, 0)
 ```
 
-`result.construction` 保存全部命名对象与动作记录。其操作名称及几何含义见 [CONSTRUCTION](CONSTRUCTION.md)。该数据可以供第二阶段动画使用。
+`result.construction` 保存全部命名对象与动作记录。其操作名称及几何含义见 [CONSTRUCTION](CONSTRUCTION.md)。第二阶段动画使用同一重放结果导出显示数据。
 
 ## 6. 再生成静态示意图
 
@@ -106,3 +106,21 @@ docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -e MPLCONFIGDIR=/tmp
 ```
 
 该命令读取已核验的精确案例，并检查案例和源代码哈希，生成 `docs/figures/construction.png`。图中三个面板分别展示给定曲线与所作直线、正根到单位圆的提升，以及原位置的两条三等分射线。坐标均来自精确案例，浮点采样和角度函数用于显示曲线与角弧。
+
+## 7. 动画数据与 Manim 渲染
+
+先运行第 3 节的正式核验，再导出动画数据。
+
+```powershell
+docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -v "${PWD}:/workspace" -w /workspace sagemath/sagemath@sha256:4f5589eb6c565949a006f8665de2876b8414410daf5ac554f4434a15d4f3d528 sage -python experiments/export_animation.py
+```
+
+导出器重新核验完整案例，确认精确证书与报告一致，然后写入 `animations/trisection/geometry.json` 和其 SHA-256 文件。Manim 使用系列已有的 `euclid-min-manim:0.21.0` 镜像。
+
+```powershell
+docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -v "${PWD}:/manim" -w /manim euclid-min-manim:0.21.0 python -m unittest discover -s animations/trisection -p 'test_*.py' -v
+
+docker run --rm --network none -e PYTHONDONTWRITEBYTECODE=1 -v "${PWD}:/manim" -w /manim euclid-min-manim:0.21.0 manim --config_file animations/trisection/manim.cfg animations/trisection/trisection.py CubicTrisection
+```
+
+该命令按配置生成 3840 × 2160、60 fps 母片。Dockerfile、720p30 预览、播放版封装、分镜和时间线记录见 [动画说明](../animations/trisection/README.md)。

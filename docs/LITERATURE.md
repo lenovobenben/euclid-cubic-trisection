@@ -32,6 +32,6 @@
 
 本阶段整理一套覆盖全部锐角的有限构造，明确一次给定立方曲线求交的能力，给出三个根的统一隔离与正根选择规则，将结果转回原角的两条射线，并提供一般证明、精确几何重放、独立角核验及可复现证书。
 
-项目沿用系列上一题的中文研究文档、中英文 README、SageMath 10.7 精确运算和来源保存方式。第二阶段将单独制作动画。[Euclid-Conic-Classification](https://github.com/lenovobenben/euclid-conic-classification)
+项目沿用系列上一题的中文研究文档、中英文 README、SageMath 10.7 精确运算和来源保存方式。第二阶段使用同一核验案例制作完整 Manim 作图动画，补充局部放大及动作顺序回归。[Euclid-Conic-Classification](https://github.com/lenovobenben/euclid-conic-classification) · [动画说明](../animations/trisection/README.md)
 
 数学中使用的恒等式和经典尺规宏按其既有来源记录。历史文献比较完成后可进一步细化该具体实现与既有作法的关系。
